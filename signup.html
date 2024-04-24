@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        /* Reset some default styles for the page */
+        body, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Apply styles to the body and background image */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("static/wallpaper.jpg"); /* Replace with the path to your image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+        }
+
+        /* Style the form container */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Style the heading */
+        h2 {
+            font-size: 36px;
+            color: #fff;
+            transition: font-size 0.2s, transform 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+
+        h2:hover {
+            font-size: 48px;
+            transform: scale(1.2);
+            color: #ff0000; /* Red color on hover */
+        }
+
+        /* Style the input fields */
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+        }
+
+        .label-text {
+            color: #f06;
+            font-weight: bold;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 10px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 5px;
+            background-color: #fff;
+            color: #333;
+            font-size: 16px;
+        }
+
+        /* Style the "Sign Up" button */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50; /* Green color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        /* Style the "Log in" and "Home" links */
+        .login-link, .home-link {
+            color: white;
+            text-decoration: none;
+            margin: 10px 0;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            cursor: pointer;
+            border: 2px solid transparent;
+            padding: 5px 10px;
+            transition: border 0.2s, color 0.2s;
+        }
+
+        .login-link:hover, .home-link:hover {
+            color: #3498db; /* Blue color for links on hover */
+            border: 2px solid #3498db;
+        }
+
+        /* Style the warning message */
+        .warning {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="/signup">
+        <h2 id="logo" onmouseover="enlargeAndColorize(this)" onmouseout="restoreSizeAndColor(this)">Wizzard</h2>
+        <div class="input-container">
+            <label class="label-text">Enter email:</label>
+            <input type="text" id="email-input" name="email" placeholder="" required>
+        </div>
+        <div class="input-container">
+            <label class="label-text">Enter password:</label>
+            <input type="password" id="password-input" name="password" placeholder="" required>
+        </div>
+        <div class="input-container">
+            <label class="label-text">Confirm password:</label>
+            <input type="password" id="password2-input" name="password2" placeholder="" required>
+        </div>
+        <div class="button-container">
+            <input type="submit" value="Sign Up" class="button signup-button" onmouseover="buttonMouseOver(this)" onmouseout="buttonMouseOut(this)">
+            <a href="{{ url_for('login') }}" class="login-link">Already have an account? Log in</a>
+            <a href="{{ url_for('home') }}" class="home-link">Home</a>
+            <p id="message" class="warning">{{ message }}</p> <!-- Warning message -->
+        </div>
+    </form>
+    <script>
+        function enlargeAndColorize(element) {
+            element.style.transition = "font-size 0.2s, transform 0.2s, color 0.2s";
+            element.style.fontSize = "48px";
+            element.style.transform = "scale(1.2)";
+            element.style.color = "#ff0000"; /* Red color on hover */
+        }
+
+        function restoreSizeAndColor(element) {
+            element.style.transition = "font-size 0.2s, transform 0.2s, color 0.2s";
+            element.style.fontSize = "36px";
+            element.style.transform = "scale(1)";
+            element.style.color = "#fff"; /* White color on hover out */
+        }
+
+        function buttonMouseOver(button) {
+            button.style.backgroundColor = "#4CAF50"; /* Darker green on hover */
+        }
+
+        function buttonMouseOut(button) {
+            button.style.backgroundColor = "#4CAF50"; /* Restore the green color on hover out */
+        }
+    </script>
+</body>
+</html>
+

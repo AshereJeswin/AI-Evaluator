@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predicted Ratings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("/static/wallpaper.jpg");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff; /* Change title text color */
+            padding: 20px 0; /* Add padding to the top and bottom of the title */
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        table th {
+            background-color: #333;
+            color: #fff;
+        }
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Predicted Ratings</h1>
+    <table>
+        <tr>
+            <th>Answer Number</th>
+            <th>Corresponding Rating</th>
+        </tr>
+        {% for rating in predicted_ratings %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td class="rating">{{ rating|round(2) }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+        // Get all the rating elements (td elements with class 'rating')
+        var ratingElements = document.querySelectorAll('.rating');
+
+        // Initialize variables to store total rating and full marks
+        var totalRating = 0;
+        var fullMarks = ratingElements.length*10;
+
+        // Loop through the rating elements and sum their values
+        for (var i = 0; i < ratingElements.length; i++) {
+            var ratingValue = parseFloat(ratingElements[i].textContent);
+            if (!isNaN(ratingValue)) {
+                totalRating += ratingValue;
+            }
+        }
+
+        // Create a new row at the end of the table to display the total rating along with full marks
+        var table = document.querySelector('table');
+        var newRow = table.insertRow(-1);
+        var totalRatingCell = newRow.insertCell(0);
+        totalRatingCell.innerHTML = 'Total Rating/' + fullMarks;
+        var totalValueCell = newRow.insertCell(1);
+        totalValueCell.innerHTML = totalRating.toFixed(2) + '/' + fullMarks;
+    </script>
+</body>
+</html>

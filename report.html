@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regression Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ffffff;
+            padding: 8px;
+            text-align: left;
+            color: #ffffff;
+        }
+        th {
+            background-color: #1c2aea;
+        }
+    </style>
+</head>
+<body>
+    <h1>Regression Report</h1>
+    <table>
+        <tr>
+            <th>Dataset</th>
+            <th>MAE</th>
+            <th>MSE</th>
+            <th>R2</th>
+        </tr>
+        {% for report_data in reports %}
+        <tr>
+            <td>{{ report_data['csv_file'] }}</td>
+            <td>{{ report_data['report']['MAE'] }}</td>
+            <td>{{ report_data['report']['MSE'] }}</td>
+            <td>{{ report_data['report']['R2'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* Reset some default styles for the page */
+        body, h1, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Apply styles to the body and background image */
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("static/wallpaper.jpg"); /* Replace with the path to your image */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            text-align: center;
+        }
+
+        /* Style the form container */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* Style the heading */
+        h1 {
+            font-size: 36px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: font-size 0.2s, transform 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+
+        h1:hover {
+            font-size: 48px;
+            transform: scale(1.2);
+            color: #ff0000; /* Red color on hover */
+        }
+
+        /* Style the input fields */
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 10px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            border-radius: 5px;
+            background-color: #f3f3f3;
+            color: #333;
+            font-size: 16px;
+        }
+
+        /* Style the "Login" button */
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button[type=submit] {
+            background-color: #3498db; /* Blue color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        button[type=submit]:hover {
+            background-color: #007acc; /* Darker blue on hover */
+        }
+
+        /* Style the "Sign Up" link */
+        .signup-link {
+            color: white;
+            text-decoration: none;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .signup-link:hover {
+            color: #e67e22; /* Orange color for Signup button on hover */
+        }
+
+        /* Style the warning message */
+        .warning {
+            color: red;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="/login">
+        <h1 id="logo" onmouseover="enlargeAndColorize(this)" onmouseout="restoreSizeAndColor(this)">Wizzard</h1>
+        <div class="input-container">
+            <input type="text" id="email" name="email" placeholder="Enter Username" required>
+        </div>
+        <div class="input-container">
+            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="button login-button" onmouseover="buttonMouseOver(this)" onmouseout="buttonMouseOut(this)">Login</button>
+            <a href="{{ url_for('signup') }}" class="signup-link">Don't have an account? Sign up.</a>
+            <p id="message" class="warning">{{ message }}</p> <!-- Warning message -->
+        </div>
+    </form>
+    <script>
+        function enlargeAndColorize(element) {
+            element.style.transition = "font-size 0.2s, transform 0.2s, color 0.2s";
+            element.style.fontSize = "48px";
+            element.style.transform = "scale(1.2)";
+            element.style.color = "#ff0000"; /* Red color on hover */
+        }
+
+        function restoreSizeAndColor(element) {
+            element.style.transition = "font-size 0.2s, transform 0.2s, color 0.2s";
+            element.style.fontSize = "36px";
+            element.style.transform = "scale(1)";
+            element.style.color = "#fff"; /* White color on hover out */
+        }
+
+        function buttonMouseOver(button) {
+            button.style.backgroundColor = "#007acc"; /* Darker blue on hover */
+        }
+
+        function buttonMouseOut(button) {
+            button.style.backgroundColor = "#3498db"; /* Restore the blue color on hover out */
+        }
+    </script>
+</body>
+</html>

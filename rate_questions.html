@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rate Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000; /* Set a light background color */
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #ffffff; /* Change title text color */
+        }
+        .question-answer {
+            background-color: #1c2aea;
+            padding: 20px; /* Increase padding for questions and answers */
+            border: 4px solid #a60803; /* Adjust border color and thickness */
+            border-radius: 10px; /* Add border radius for a rounded look */
+            margin: 10px;
+        }
+        input[type="text"] {
+            width: 95%;
+            border: 2px solid rgb(4, 45, 135);
+            padding: 10px; /* Adjust padding for the text box */
+            border-radius: 5px; /* Add a slight border radius */
+            font-size: 16px; /* Adjust font size for answers */
+        }
+        form {
+            text-align: center;
+        }
+        input[type="submit"] {
+            background-color: rgb(183, 9, 9); /* Background color for the submit button */
+            color: #fff; /* Text color for the submit button */
+            padding: 10px 20px; /* Adjust padding for the button */
+            font-size: 18px; /* Adjust font size for the button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #ff3333; /* Change the background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1> QUIZ (Enter your answers)</h1>
+    <form action="/rate_questions" method="post">
+        {% for question in questions %}
+        <div class="question-answer">
+            <h3>Question:</h3>
+            <p>{{ question['question'] }}</p>
+            
+            <h3>Answer:</h3>
+            <input type="text" name="answers" required>
+        </div>
+        <hr>
+        {% endfor %}
+        <input type="submit" value="Submit Answers">
+        <a href="/generate_report" class="button">Generate Classification Report</a>
+    </form>
+</body>
+</html>
